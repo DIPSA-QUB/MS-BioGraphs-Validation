@@ -10,7 +10,6 @@
 - [![DOI](gmd9-1534.svg)](https://doi.org/10.21227/gmd9-1534)
 - Downloading from DataPort: https://blogs.qub.ac.uk/DIPSA/MS-BioGraphs-on-IEEE-DataPort/
 - MS-BioGraphs Validation: https://blogs.qub.ac.uk/DIPSA/MS-BioGraphs-Validation/ 
-- Code Repo: https://github.com/DIPSA-QUB/MS-BioGraphs-Validation
 
 ## Explanation
 
