@@ -57,6 +57,26 @@ For further details about the WebGraph framework, please visit https://webgraph.
 
 ## Downloading Datasets From IEEE DataPort
 Please visit https://blogs.qub.ac.uk/DIPSA/MS-BioGraphs-on-IEEE-DataPort .
+```
+dsname="MS1"   # Set the name of dataset 
+html_file="dp.html"
+
+urls=`cat $html_file  | sed  -e 's/\&amp;/\&/g'  | grep -Eo "(http|https)://[a-zA-Z0-9./?&=_%:-]*" | grep amazonaws  | sort | uniq | grep -E "$dsname[-_\.]"`
+
+for u in $urls; do
+    wget $u
+    if [ $? != 0 ]; then break; fi
+done
+
+# Removing query strings from file names
+for f in $(find $1 -type f); do
+    if [ $f = ${f%%\?*} ]; then continue; fi
+    mv "${f}" "${f%%\?*}"
+done
+
+# Optional: liking offsets.bin to be found by ParaGrapher
+ln -s ${dsname}_offsets.bin ${dsname}-underlying_offsets.bin
+```
 
 ## License
 Licensed under the GNU v3 General Public License, as published by the Free Software Foundation. You must not use this Software except in compliance with the terms of the License. Unless required by applicable law or agreed upon in writing, this Software is distributed on an "as is" basis, without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose, neither express nor implied. For details see terms of the License (see attached file: LICENSE). 
